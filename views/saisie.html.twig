@@ -1,0 +1,14 @@
+<p id="titre">Rapport de visite</p>
+
+<form>
+	<p>Numéro du rapport : <input name="n_rapport" type="text">	 </p>
+
+	<p>Praticien : 	<select>
+						{% for praticien in praticiens}
+							<option value={{praticien.nom}}>
+								{{praticien.nom}}
+							</option>						
+						{% endfor %}
+					</select>
+	</p>
+</form>
