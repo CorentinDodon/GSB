@@ -31,12 +31,14 @@
 	<p>Bilan : <TEXTAREA name="bilanVisite" rows=10 COLS=40></TEXTAREA></p>
 
 	<p>Offre d'echantillons : <select id="lstMed" >
+			<option value="vide" selected="selected"> </option>
 		{% for medicament in medicaments %}
 			<option value={{medicament.Nom}}>
 				{{medicament.Nom}}
 			</option>
 		{% endfor %}
 	</select>
+	<a id="btnSuppr" class="btn btn-danger" style="display:none" onClick="Supprimer()">Supprimer</a>
 	<div id="lstMedChoisi"></div>
 	</p>
 
@@ -59,14 +61,31 @@
 
 
 <script>
+
 $('#lstMed').on('change', function() {
   var value = $(this).val();
+  var liste = document.getElementById("lstMed");
+  var index = document.getElementById("lstMed").selectedIndex;
+
   //value contient le nom de l'item choisi dans le select
   var div = document.getElementById("lstMedChoisi");
-  var node = document.createElement("div");
-  node.textContent = value;
-  div.appendChild(node);
+  if(document.getElementById("lstMedChoisi").childNodes.length < 10){
+  	  var node = document.createElement("div");
+	  node.textContent = value;
+	  div.appendChild(node);
+	  //enlever l'item choisi de la liste
+	  liste.options[index] = null;
+	  document.getElementById("btnSuppr").style.display = "initial";
+  } else{
+  	alert("Impossible de choisir plus de 10 echantillons");
+  }
+  
 });
+
+function Supprimer(){
+	document.getElementById("lstMedChoisi").innerHTML = "";
+}
+
 </script>
 
 
