@@ -1,14 +1,73 @@
+ {% extends 'layout.html.twig' %}
+
+	{% block title %}Ajout rapport{% endblock %}
+
+	{% block stylesheets %}
+		{{ parent() }}
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	{% endblock %}
+
+
+{% block content %}
 <p id="titre">Rapport de visite</p>
 
 <form>
 	<p>Numéro du rapport : <input name="n_rapport" type="text">	 </p>
 
 	<p>Praticien : 	<select>
-						{% for praticien in praticiens}
-							<option value={{praticien.nom}}>
-								{{praticien.nom}}
+						{% for praticien in praticiens %}
+
+							<option value={{praticien.Nom}}>
+								{{praticien.Nom}}  {{praticien.Prenom}}
 							</option>						
 						{% endfor %}
 					</select>
 	</p>
+
+	<p id="date">Date: <input type="text" id="datepicker" onChange="changeDataPicker();"></p>
+
+	<p>Motif de la visite : <input name="motifVisite" type="text"></p>
+
+	<p>Bilan : <TEXTAREA name="bilanVisite" rows=10 COLS=40></TEXTAREA></p>
+
+	<p>Offre d'echantillons : <select id="lstMed" >
+		{% for medicament in medicaments %}
+			<option value={{medicament.Nom}}>
+				{{medicament.Nom}}
+			</option>
+		{% endfor %}
+	</select>
+	<div id="lstMedChoisi"></div>
+	</p>
+
+	<INPUT TYPE="submit" NAME="Valider" VALUE="Valider">
+	<INPUT TYPE="reset" NAME="Annuler" VALUE="Annuler">
 </form>
+
+{% endblock %}
+
+
+{% block javascript %}
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<script>
+	$(function() {
+		$( "#datepicker" ).datepicker();
+	});
+</script>
+
+
+<script>
+$('#lstMed').on('change', function() {
+  var value = $(this).val();
+  //value contient le nom de l'item choisi dans le select
+  var div = document.getElementById("lstMedChoisi");
+  var node = document.createElement("div");
+  node.textContent = value;
+  div.appendChild(node);
+});
+</script>
+
+
+{% endblock %}
