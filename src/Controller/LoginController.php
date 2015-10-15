@@ -1,6 +1,6 @@
 <?php
 
-namespace DDDG\Controller;
+namespace GSB\Controller;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,4 +15,10 @@ class LoginController
             'last_username' => $app['session']->get('_security.last_username'),
         ));
     }
+	
+	public function indexAction (Request $request, Application $app)
+	{
+	
+		return $app['twig']->render('layout.html.twig');
+	}
 }

@@ -1,5 +1,7 @@
 <?php
 
+namespace GSB\Controller;
+
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\User;
@@ -18,13 +20,14 @@ class UserProvider implements UserProviderInterface
 
     public function loadUserByUsername($username)
     {
-        $stmt = $this->conn->executeQuery('SELECT * FROM Employe WHERE nom = ?', array(strtolower($username)));
+        $stmt = $this->conn->executeQuery('SELECT * FROM employe WHERE nom = ?', array($username));
 
         if (!$user = $stmt->fetch()) {
             throw new UsernameNotFoundException(sprintf('Username "%s" does not exist.', $username));
         }
+        
+        return new User($user['nom'], $user['prenom'], explode(',', $user['roles']), true, true, true, true);
 
-        return new User($user['nom'], $user['dateEmbauche'], explode(',', $user['roles']), true, true, true, true);
     }
 
     public function refreshUser(UserInterface $user)
