@@ -15,10 +15,6 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/../views',
 ));
 
-$app['dao.praticien'] = $app->share(function ($app) {
-    return new GSB\DAO\PraticienDAO($app['db']);
-});
-
 $app->register(new Silex\Provider\ValidatorServiceProvider());
 $app->register(new Silex\Provider\SessionServiceProvider());
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
@@ -36,3 +32,11 @@ $app->register(new Silex\Provider\SecurityServiceProvider(), array(
         ),
     ),
 ));
+
+$app['dao.praticien'] = $app->share(function ($app) {
+    return new GSB\DAO\PraticienDAO($app['db']);
+});
+
+$app['dao.medicament'] = $app->share(function ($app) {
+    return new GSB\DAO\MedicamentsDAO($app['db']);
+});
