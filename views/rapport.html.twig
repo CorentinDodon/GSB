@@ -1,0 +1,23 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}{{ Rapport de visite }}{% endblock %}
+
+
+
+{% block content %}
+
+ <tr>
+    <td>numero du raport : <input type="text" name="id_Rapport"></td>
+    <td>nom praticien :<SELECT name="Praticien"> 
+
+    {% for rapport in rapports %}
+      $coucou = rapport.id
+      var_dump($coucou)
+    {% else %}
+
+    {% endfor %}
+
+</tr>         
+
+
+{% endblock %}
