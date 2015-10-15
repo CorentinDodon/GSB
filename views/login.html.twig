@@ -1,26 +1,31 @@
-{% block title %}User authentification{% endblock %}
+{% extends 'layout.html.twig' %}
+
+{% block title %}User authentication{% endblock %}
 
 {% block content %}
-    {% if error %}
-        <div class="alert alert-danger">
-            <strong>Login failed!</strong> {{ error }}
+<h2 class="text-center">{{ block('title') }}</h2>
+{% if error %}
+<div class="alert alert-danger">
+    <strong>Login failed!</strong> {{ error }}
+</div>
+{% endif %}
+<div class="well">
+    <form class="form-signin form-horizontal" role="form" action="{{ path('admin_login_check') }}" method="post">
+        <div class="form-group">
+            <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+            <input type="text" name="_username" value="{{ last_username }}" class="form-control" placeholder="Enter your username" required autofocus>
+            </div>
         </div>
-    {% endif %}
-    <div class="row">
-        <form class="form-signin form-horizontal col-md-5" role="form" action="{{ path('admin_login_check') }}"
-              method="post">
-            <div class="form-group">
-                <input type="text" name="_username" value="{{ last_username }}" class="form-control"
-                       placeholder="Enter your username" required autofocus>
+        <div class="form-group">
+            <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                <input type="password" name="_password" class="form-control" placeholder="Enter your password" required>
             </div>
-            <div class="form-group">
-                <input type="text" name="_password" class="form-control" placeholder="Enter your password" required>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                <button type="submit" class="btn btn-default btn-primary">Login</button>
             </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary pull-right">
-                    <span class="glyphicon glyphicon-log-in"></span> Log In
-                </button>
-            </div>
-        </form>
-    </div>
+        </div>
+    </form>
+</div>
 {% endblock %}

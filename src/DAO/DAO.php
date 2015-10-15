@@ -1,10 +1,10 @@
 <?php
 
-namespace src\DAO;
+namespace GSB\DAO;
 
 use Doctrine\DBAL\Connection;
 
-class DAO
+abstract class DAO
 {
 
     protected $db;
@@ -21,15 +21,5 @@ class DAO
 	
     protected function buildDomainObject($row)
     {
-    }
-	
-    public function close()
-    {
-        $this->db->close();
-    }
-	
-    public function __destruct()
-    {
-        $this->close();
     }
 }
