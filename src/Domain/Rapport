@@ -17,7 +17,6 @@ class Rapport
 	private id_Motif;
 	
 	
-	
 
 	public function getId() {
         return $this->id;
