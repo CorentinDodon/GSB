@@ -1,6 +1,5 @@
 <?php
 
-
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
 	'db.options' => array(
 		'driver'   => 'pdo_mysql',
@@ -19,7 +18,7 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 $app['dao.praticien'] = $app->share(function ($app) {
     return new GSB\DAO\PraticienDAO($app['db']);
 });
-/*
+
 $app->register(new Silex\Provider\ValidatorServiceProvider());
 $app->register(new Silex\Provider\SessionServiceProvider());
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
@@ -32,9 +31,8 @@ $app->register(new Silex\Provider\SecurityServiceProvider(), array(
             'logout'  => array('logout_path' => '/admin/logout'),
             'form'    => array('login_path' => '/login', 'check_path' => '/admin/login_check'),
             'users' => $app->share(function () use ($app) {
-				return new UserProvider($app['db']);
+				return new GSB\Controller\UserProvider($app['db']);
 				}),
         ),
     ),
 ));
-*/
