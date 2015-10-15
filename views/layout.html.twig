@@ -10,8 +10,9 @@
     {% block stylesheets %}
         <link href="{{ app.request.basepath }}/css/bootstrap.min.css" rel="stylesheet">
         <link href="{{ app.request.basepath }}/css/bootstrap-theme.min.css" rel="stylesheet">
-        <link href="{{ app.request.basepath }}/css/GSB.css" rel="stylesheet">
-        <link href="{{ app.request.basepath }}/css/font-awesome.min.css" rel="stylesheet">
+        <!-- <link href="{{ app.request.basepath }}/css/GSB.css" rel="stylesheet"> -->
+		<link href="{{ app.request.basepath }}/css/dashboard.css" rel="stylesheet">
+		
     {% endblock %}
 
   </head>
@@ -55,8 +56,12 @@
 			  <div class="row">
 				<div class="col-sm-3 col-md-2 sidebar">
 				  <ul class="nav nav-sidebar">
-					<li><a href="#">Test</a></li>
-					<li><a href="#">Damn</a></li>
+				  <img src="{{ app.request.basepath }}/images/logo.jpg" title="Laboratoire Galaxy-Swiss Bourdin" /></a>
+					<li><a href="#">Saisie compte-rendu</a></li>
+					<li><a href="">Compte-rendu</a></li>
+					<li><a href="">Visiteur</a></li>
+					<li><a href="">Practicien</a></li>
+					<li><a href="">Medicament</a></li>
 				  </ul>
 				</div>
 			  </div>    
