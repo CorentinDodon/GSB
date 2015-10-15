@@ -100,3 +100,12 @@ body {
   display: inline-block;
   border-radius: 50%;
 }
+
+/*
+*Container
+*/
+.container{
+margin-left : 555px;
+margin-bottom : 25px;
+
+}
