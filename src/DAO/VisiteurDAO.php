@@ -20,6 +20,10 @@ class MedicamentsDAO extends DAO
 	    return $visiteur;
 
     }
+	public function NomComplet(){
+		$sql = "select CONCAT(`nom`," ", `prenom`) from employe order by id asc";
+		$result = $this->db->fetchAll($sql);
+	}
 
     private function buildVisiteur(array $row) {
 

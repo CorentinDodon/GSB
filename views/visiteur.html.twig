@@ -1,0 +1,16 @@
+<div class = "container">
+	<h3>Affichage Visiteur <h3>
+	<form method="post" action="">
+   <p>
+       <p>Visiteur 	<select>
+						{% for praticien in praticiens %}
+
+							<option value={{praticien.Nom}}>
+								{{praticien.Nom}}  {{praticien.Prenom}}
+							</option>						
+						{% endfor %}
+					</select>
+	</p>
+   </p>
+</form>
+</div>
