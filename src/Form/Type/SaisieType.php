@@ -12,10 +12,10 @@ class SaisieType extends AbstractType
     {
         $builder
            	->add('dateRap','date', array(
-           			'format' => 'ddMMyyyy'
+           			'format' => 'dd MM yyyy'
            		))
            	->add('dateVisite','date', array(
-           			'format' => 'ddMMyyyy'
+           			'format' => 'dd MM yyyy'
            		))
            	->add('idPraticien', 'choice', array(
            			'choices' => $options['praticiensChoices'],
@@ -24,7 +24,9 @@ class SaisieType extends AbstractType
            			'choices' => $options['motifChoices'],
            	))
            	->add('bilan','textarea')
-           	//->add('echantillon', 'choice')
+           	->add('echantillon', 'choice', array(
+           			'choices' => $options['echantillonChoices'],
+           	))
            	;
 
     }
@@ -41,5 +43,8 @@ class SaisieType extends AbstractType
 
     	$resolver->setRequired(['motifChoices']);
     	$resolver->setDefaults(['motifChoices' => array()]);
+
+    	$resolver->setRequired(['echantillonChoices']);
+    	$resolver->setDefaults(['echantillonChoices' => array()]);
     }
 }

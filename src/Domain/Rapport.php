@@ -16,7 +16,7 @@ class Rapport
 	
 	private $idMotif;
 
-	private $echantillon1;
+	private $echantillon;
 
 	private $echantillon2;
 
@@ -86,8 +86,12 @@ class Rapport
         $this->idMotif = $idMotif;
     }
 
-    public function getEchantillon1(){
-    	return $this->echantillon1;
+    public function getEchantillon(){
+    	return $this->echantillon;
+    }
+
+    public function setEchantillon($echantillon) {
+        $this->echantillon = $echantillon;
     }
 
     public function getEchantillon2(){

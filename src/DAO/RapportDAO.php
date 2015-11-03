@@ -21,8 +21,6 @@ class RapportDAO extends DAO
 	        $rapports[$RapportId] = $this->buildrapport($row);
 	    }
 	    return $rapports;
-
-	    dump($rapports);
     }
 
     public function save(Rapport $rapport, Application $app){
