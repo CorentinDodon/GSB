@@ -40,3 +40,11 @@ $app['dao.praticien'] = $app->share(function ($app) {
 $app['dao.medicament'] = $app->share(function ($app) {
     return new GSB\DAO\MedicamentsDAO($app['db']);
 });
+
+$app['dao.rapport'] = $app->share(function ($app) {
+    return new GSB\DAO\RapportDAO($app['db']);
+});
+
+$app['dao.motif'] = $app->share(function ($app) {
+    return new GSB\DAO\MotifDAO($app['db']);
+});

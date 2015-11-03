@@ -20,6 +20,22 @@ class PraticienDAO extends DAO
 
     }
 
+    public function findAllAsArray()
+    {
+    	$sql = 'SELECT id, nom, prenom FROM praticien ORDER BY nom ASC';
+    	$result = $this->db->prepare($sql);
+    	$result->execute();
+    	$result = $result->fetchAll();
+    	$praticiens = array();
+
+    	foreach ($result as $row) {
+    		$id 				= $row['id'];
+    		$praticiens[$id]	= $row['nom'] .' '. $row['prenom'];
+    	}
+
+    	return $praticiens;
+    }
+
     private function buildPraticiens(array $row) {
 
         $praticien = new Praticiens();

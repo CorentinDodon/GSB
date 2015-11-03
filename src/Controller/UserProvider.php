@@ -4,7 +4,7 @@ namespace GSB\Controller;
 
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Core\User\User;
+use GSB\Domain\User;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Doctrine\DBAL\Connection;
@@ -26,13 +26,13 @@ class UserProvider implements UserProviderInterface
             throw new UsernameNotFoundException(sprintf('Username "%s" does not exist.', $username));
         }
         
-        return new User($user['nom'], $user['prenom'], explode(',', $user['roles']), true, true, true, true);
+        return new User($user['id'], $user['nom'], $user['prenom'], explode(',', $user['roles']), true, true, true, true);
 
     }
 
     public function refreshUser(UserInterface $user)
     {
-        if (!$user instanceof User) {
+        if (!$user instanceof \GSB\Domain\User) {
             throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', get_class($user)));
         }
 

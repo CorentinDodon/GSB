@@ -1,92 +1,53 @@
  {% extends 'layout.html.twig' %}
 
-	{% block title %}Ajout rapport{% endblock %}
-
-	{% block stylesheets %}
-		{{ parent() }}
-		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-	{% endblock %}
+	{% block title %} {{ title }} {% endblock %}
 
 
 {% block content %}
-<p id="titre">Rapport de visite</p>
 
-<form>
-	<p>Numéro du rapport : <input name="n_rapport" type="text">	 </p>
+<div class="row">
+	<div class="col-md-5">
+		{{ form_start(rapportForm, {'attr' : {'class' : 'form-horizontal'} }) }}
+			<div class="form-group">
+				{{ form_label(rapportForm.idPraticien, 'Choisir le praticien', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(rapportForm.idPraticien) }}
+				{{ form_widget(rapportForm.idPraticien, { 'attr': { 'class': 'form-control'}}) }}
+			</div>
 
-	<p>Praticien : 	<select>
-						{% for praticien in praticiens %}
+			<div class="form-group">
+				{{ form_label(rapportForm.dateRap, 'Choisir la date de rappel de visite', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(rapportForm.dateRap) }}
+				{{ form_widget(rapportForm.dateRap) }}
+			</div>
 
-							<option value={{praticien.Nom}}>
-								{{praticien.Nom}}  {{praticien.Prenom}}
-							</option>						
-						{% endfor %}
-					</select>
-	</p>
+			<div class="form-group">
+				{{ form_label(rapportForm.dateVisite, 'Choisir la date de visite', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(rapportForm.dateVisite) }}
+				{{ form_widget(rapportForm.dateVisite) }}
+			</div>
 
-	<p id="date">Date: <input type="text" id="datepicker" onChange="changeDataPicker();"></p>
+			<div class="form-group">
+				{{ form_label(rapportForm.idMotif, 'Choisissez le motif de la visite', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(rapportForm.idMotif) }}
+				{{ form_widget(rapportForm.idMotif, { 'attr': { 'class': 'form-control'}}) }}
+			</div>
 
-	<p>Motif de la visite : <input name="motifVisite" type="text"></p>
+			<div class="form-group">
+				{{ form_label(rapportForm.bilan, 'Completez le bilan', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(rapportForm.bilan) }}
+				{{ form_widget(rapportForm.bilan, { 'attr': { 'class': 'form-control'}}) }}
+			</div>
 
-	<p>Bilan : <TEXTAREA name="bilanVisite" rows=10 COLS=40></TEXTAREA></p>
+			<div class="form-group col-md-8">
+				<div class="pull-right">
+					<a href="{{ app.url_generator.generate('index') }}">
+						<input type="submit" class="btn btn-primary btn-ls" value="Save"/>
+					</a>
+				</div>
+			</div>
 
-	<p>Offre d'echantillons : <select id="lstMed" >
-			<option value="vide" selected="selected"> </option>
-		{% for medicament in medicaments %}
-			<option value={{medicament.Nom}}>
-				{{medicament.Nom}}
-			</option>
-		{% endfor %}
-	</select>
-	<a id="btnSuppr" class="btn btn-danger" style="display:none" onClick="Supprimer()">Supprimer</a>
-	<div id="lstMedChoisi"></div>
-	</p>
-
-	<INPUT TYPE="submit" NAME="Valider" VALUE="Valider">
-	<INPUT TYPE="reset" NAME="Annuler" VALUE="Annuler">
-</form>
-
-{% endblock %}
-
-
-{% block javascript %}
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
-<script>
-	$(function() {
-		$( "#datepicker" ).datepicker();
-	});
-</script>
-
-
-<script>
-
-$('#lstMed').on('change', function() {
-  var value = $(this).val();
-  var liste = document.getElementById("lstMed");
-  var index = document.getElementById("lstMed").selectedIndex;
-
-  //value contient le nom de l'item choisi dans le select
-  var div = document.getElementById("lstMedChoisi");
-  if(document.getElementById("lstMedChoisi").childNodes.length < 10){
-  	  var node = document.createElement("div");
-	  node.textContent = value;
-	  div.appendChild(node);
-	  //enlever l'item choisi de la liste
-	  liste.options[index] = null;
-	  document.getElementById("btnSuppr").style.display = "initial";
-  } else{
-  	alert("Impossible de choisir plus de 10 echantillons");
-  }
-  
-});
-
-function Supprimer(){
-	document.getElementById("lstMedChoisi").innerHTML = "";
-}
-
-</script>
-
+		{{ form_end(rapportForm) }}
+	</div>
+</div>
 
 {% endblock %}
