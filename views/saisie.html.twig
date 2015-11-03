@@ -7,6 +7,17 @@
 
 <div class="row">
 	<div class="col-md-5">
+		{% for flashMessage in app.session.flashbag.get('success') %}
+			<div class="alert alert-success">
+				{{ flashMessage }}
+			</div>
+		{% endfor %}
+		{% for flashMessage in app.session.flashbag.get('danger') %}
+			<div class="alert alert-danger">
+				{{ flashMessage }}
+			</div>
+		{% endfor %}
+
 		{{ form_start(rapportForm, {'attr' : {'class' : 'form-horizontal'} }) }}
 			<div class="form-group">
 				{{ form_label(rapportForm.idPraticien, 'Choisir le praticien', {'label_attr':{'class': 'control-label'} }) }}
@@ -38,16 +49,56 @@
 				{{ form_widget(rapportForm.bilan, { 'attr': { 'class': 'form-control'}}) }}
 			</div>
 
+			<div class="form-group">
+				{{ form_label(rapportForm.echantillon, 'Choisir les echantillons', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(rapportForm.echantillon) }}
+				{{ form_widget(rapportForm.echantillon, { 'attr': { 'class': 'form-control'}}) }}
+			</div>
+
+			<div id="lstMedChoisi">
+
+			</div>
+
 			<div class="form-group col-md-8">
 				<div class="pull-right">
-					<a href="{{ app.url_generator.generate('index') }}">
-						<input type="submit" class="btn btn-primary btn-ls" value="Save"/>
-					</a>
+					<input type="submit" class="btn btn-primary btn-ls" value="Save"/>
 				</div>
 			</div>
 
 		{{ form_end(rapportForm) }}
 	</div>
 </div>
+
+{% endblock %}
+
+{% block javascript %}
+
+<script>
+
+$('#lstMed').on('change', function() {
+  var value = $(this).val();
+  var liste = document.getElementById("lstMed");
+  var index = document.getElementById("lstMed").selectedIndex;
+
+  //value contient le nom de l'item choisi dans le select
+  var div = document.getElementById("lstMedChoisi");
+  if(document.getElementById("lstMedChoisi").childNodes.length < 10){
+  	  var node = document.createElement("div");
+	  node.textContent = value;
+	  div.appendChild(node);
+	  //enlever l'item choisi de la liste
+	  liste.options[index] = null;
+	  document.getElementById("btnSuppr").style.display = "initial";
+  } else{
+  	alert("Impossible de choisir plus de 10 echantillons");
+  }
+  
+});
+
+function Supprimer(){
+	document.getElementById("lstMedChoisi").innerHTML = "";
+}
+
+</script>
 
 {% endblock %}

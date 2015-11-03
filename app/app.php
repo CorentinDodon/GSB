@@ -37,7 +37,7 @@ $app['dao.praticien'] = $app->share(function ($app) {
     return new GSB\DAO\PraticienDAO($app['db']);
 });
 
-$app['dao.medicament'] = $app->share(function ($app) {
+$app['dao.medicaments'] = $app->share(function ($app) {
     return new GSB\DAO\MedicamentsDAO($app['db']);
 });
 
