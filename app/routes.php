@@ -23,5 +23,5 @@ $app->get('/admin/visiteur', "GSB\Controller\VisiteurController::indexAction")
 	->bind('listVisiteur');
 $app->get('/admin/rapport', "GSB\Controller\RapportController::indexAction")
 	->bind('listRapport');
-$app->get('/admin/rapport/add', "GSB\Controller\RapportController::addRapportAction")
+$app->match('/admin/rapport/add', "GSB\Controller\RapportController::addRapportAction")
 	->bind('addRapport');
