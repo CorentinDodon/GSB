@@ -59,6 +59,11 @@
 
 			</div>
 
+			<div class="form-group">	
+				{{ form_errors(rapportForm.echantillon) }}
+				{{ form_widget(rapportForm.echantillon, { 'attr': { 'class': 'form-control'}}) }}
+			</div>
+
 			<div class="form-group col-md-8">
 				<div class="pull-right">
 					<input type="submit" class="btn btn-primary btn-ls" value="Save"/>
@@ -75,25 +80,27 @@
 
 <script>
 
-$('#lstMed').on('change', function() {
-  var value = $(this).val();
-  var liste = document.getElementById("lstMed");
-  var index = document.getElementById("lstMed").selectedIndex;
+document.getElementById("rapport_echantillon").onchange = function(){
+	var idEch  = document.getElementById("rapport_echantillon").value;
+	var value  = document.getElementById("rapport_echantillon").options[document.getElementById('rapport_echantillon').selectedIndex].text;
+  	var liste  = document.getElementById("rapport_echantillon");
+  	var index  = document.getElementById("rapport_echantillon").selectedIndex;
+  	var strEch = document.getElementById("rapport_strEchantillon");
 
-  //value contient le nom de l'item choisi dans le select
-  var div = document.getElementById("lstMedChoisi");
-  if(document.getElementById("lstMedChoisi").childNodes.length < 10){
-  	  var node = document.createElement("div");
-	  node.textContent = value;
-	  div.appendChild(node);
-	  //enlever l'item choisi de la liste
-	  liste.options[index] = null;
-	  document.getElementById("btnSuppr").style.display = "initial";
-  } else{
-  	alert("Impossible de choisir plus de 10 echantillons");
-  }
-  
-});
+  	//value contient le nom de l'item choisi dans le select
+  	var div = document.getElementById("lstMedChoisi");
+  	if(document.getElementById("lstMedChoisi").childNodes.length <= 10){
+  	  	var node = document.createElement("div");
+	  	node.textContent = value;
+	  	div.appendChild(node);
+	  	strEch.value = strEch.value + ";" + idEch;
+	  	//enlever l'item choisi de la liste
+	  	liste.options[index] = null;
+	  	document.getElementById("btnSuppr").style.display = "initial";
+  	} else{
+  		alert("Impossible de choisir plus de 10 echantillons");
+  	}
+};
 
 function Supprimer(){
 	document.getElementById("lstMedChoisi").innerHTML = "";
