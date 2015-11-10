@@ -37,8 +37,6 @@ class MedicamentsDAO extends DAO
 		
 		$visiteur->setSecteur($row['secteur']);
 		
-		$visiteur->setgetNomLabo($row['nomLabo']);
-		
 		return $visiteur;
 
     }

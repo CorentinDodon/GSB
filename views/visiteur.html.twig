@@ -1,0 +1,92 @@
+{% extends 'layout.html.twig' %}
+
+	{% block title %} {{ title }} {% endblock %}
+
+
+{% block content %}
+
+<div class="row">
+	<div class="col-md-5">
+		{% for flashMessage in app.session.flashbag.get('success') %}
+			<div class="alert alert-success">
+				{{ flashMessage }}
+			</div>
+		{% endfor %}
+		
+
+		{{ form_start(rapportForm, {'attr' : {'class' : 'form-horizontal'} }) }}
+			<div class="form-group">
+				{{ form_label(rapportForm.idVisiteur, 'Choisir le visiteur', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(rapportForm.idVisiteur) }}
+				{{ form_widget(rapportForm.idVisiteur, { 'attr': { 'class': 'form-control'}}) }}
+			</div>
+			
+			<div class="form-group col-md-8">
+				<div class="pull-right">
+					<input type="submit" class="btn btn-primary btn-ls" value="OK"/>
+				</div>
+			</div>
+
+			<div class="form-group">
+				{{ form_label(rapportForm.numVisiteur, 'Numero ', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(rapportForm.numVisiteur) }}
+				{{ form_widget(rapportForm.numVisiteur, { 'attr': { 'class': 'form-control'}}) }}
+			</div>
+			
+			<div class="form-group">
+				{{ form_label(rapportForm.nameVisiteur, 'Nom ', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(rapportForm.nameVisiteur) }}
+				{{ form_widget(rapportForm.nameVisiteur, { 'attr': { 'class': 'form-control'}}) }}
+			</div>
+			
+			<div class="form-group">
+				{{ form_label(rapportForm.surnVisiteur, 'Prenom ', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(rapportForm.surnVisiteur) }}
+				{{ form_widget(rapportForm.surnVisiteur, { 'attr': { 'class': 'form-control'}}) }}
+			</div>
+			
+			<div class="form-group">
+				{{ form_label(rapportForm.adrVisiteur, 'Adresse ', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(rapportForm.adrVisiteur) }}
+				{{ form_widget(rapportForm.adrVisiteur, { 'attr': { 'class': 'form-control'}}) }}
+			</div>
+			
+			<div class="form-group">
+				{{ form_label(rapportForm.cpVisiteur, '', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(rapportForm.cpVisiteur) }}
+				{{ form_widget(rapportForm.cpVisiteur, { 'attr': { 'class': 'form-control'}}) }}
+			</div>
+			
+			<div class="form-group">
+				{{ form_label(rapportForm.villeVisiteur, 'Ville ', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(rapportForm.villeVisiteur) }}
+				{{ form_widget(rapportForm.villeVisiteur, { 'attr': { 'class': 'form-control'}}) }}
+			</div>
+			
+			<div class="form-group">
+				{{ form_label(rapportForm.secVisiteur, 'Secteur ', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(rapportForm.secVisiteur) }}
+				{{ form_widget(rapportForm.secVisiteur, { 'attr': { 'class': 'form-control'}}) }}
+			</div>
+			
+			
+
+			
+
+		{{ form_end(visiteurForm) }}
+	</div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+
+<script>
+
+
+
+  	
+
+</script>
+
+{% endblock %}
