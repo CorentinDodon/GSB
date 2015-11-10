@@ -81,7 +81,6 @@ body {
   margin-top: 0;
 }
 
-
 /*
  * Placeholder dashboard ideas
  */
@@ -102,10 +101,23 @@ body {
 }
 
 /*
+Image
+*/
+.image{
+margin-left : 25px;
+margin-bottom : 15px;
+}
+
+/*
 *Container
 */
 .container{
 margin-left : 255px;
 margin-top : 55px;
 
+}
+
+.containerLog{
+margin-right : 255px;
+margin-top : 55px;
 }

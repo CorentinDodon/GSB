@@ -30,6 +30,6 @@ $app->get('/admin/visiteur/{id}', "GSB\Controller\VisiteurController::afficheAct
 
 $app->get('/admin/rapport', "GSB\Controller\RapportController::indexAction")
 	->bind('listRapport');
-$app->get('/admin/rapport/{id}', "GSB\Controller\RapportController::afficheAction");
+//$app->get('/admin/rapport/{id}', "GSB\Controller\RapportController::afficheAction");
 $app->match('/admin/rapport/add', "GSB\Controller\RapportController::addRapportAction")
 	->bind('addRapport');
