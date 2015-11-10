@@ -27,6 +27,7 @@ class SaisieType extends AbstractType
            	->add('echantillon', 'choice', array(
            			'choices' => $options['echantillonChoices'],
            	))
+            ->add('strEchantillon','hidden')
            	;
 
     }

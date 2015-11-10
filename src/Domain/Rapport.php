@@ -18,23 +18,7 @@ class Rapport
 
 	private $echantillon;
 
-	private $echantillon2;
-
-	private $echantillon3;
-
-	private $echantillon4;
-
-	private $echantillon5;
-
-	private $echantillon6;
-
-	private $echantillon7;
-
-	private $echantillon8;
-
-	private $echantillon9;
-
-	private $echantillon10;
+	private $strEchantillon;
 	
 	
 
@@ -94,43 +78,12 @@ class Rapport
         $this->echantillon = $echantillon;
     }
 
-    public function getEchantillon2(){
-    	return $this->echantillon2;
+    public function getStrEchantillon(){
+        return $this->strEchantillon;
     }
 
-    public function getEchantillon3(){
-    	return $this->echantillon3;
-    }
-
-    public function getEchantillon4(){
-    	return $this->echantillon4;
-    }
-
-    public function getEchantillon5(){
-    	return $this->echantillon5;
-    }
-
-    public function getEchantillon6(){
-    	return $this->echantillon6;
-    }
-
-	public function getEchantillon7(){
-    	return $this->echantillon7;
-    }
-
-    public function getEchantillon8(){
-    	return $this->echantillon8;
-    }
-
-	public function getEchantillon9(){
-    	return $this->echantillon9;
-    }
-
-    public function getEchantillon10(){
-    	return $this->echantillon10;
-    }
-
-
-
+    public function setStrEchantillon($strEchantillon) {
+        $this->strEchantillon = $strEchantillon;
+    }    
 
 }

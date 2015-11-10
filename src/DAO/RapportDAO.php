@@ -40,30 +40,19 @@ class RapportDAO extends DAO
 
     	$echantillonData = array(
     		'n_rapport'		=> $rapport->getId(),
-    		array(
-    			'echantillon1'	=> $rapport->getEchantillon1(),
-    			'echantillon2'	=> $rapport->getEchantillon2(),
-    			'echantillon3'	=> $rapport->getEchantillon3(),
-    			'echantillon4'	=> $rapport->getEchantillon4(),
-    			'echantillon5'	=> $rapport->getEchantillon5(),
-    			'echantillon6'	=> $rapport->getEchantillon6(),
-    			'echantillon7'	=> $rapport->getEchantillon7(),
-    			'echantillon8'	=> $rapport->getEchantillon8(),
-    			'echantillon9'	=> $rapport->getEchantillon9(),
-    			'echantillon10'	=> $rapport->getEchantillon10(),
-    			),
+    		'strEch'        => $rapport->getStrEchantillon(),
     		);
 
-    	for ($i = 1; $i < 10; $i++) {
-    		if ($echantillonData[0]['echantillon'.$i] != null) {
-    			$echantillon = array(
-    				$echantillonData[0],
-    				$echantillonData[1][$i],
-    				);
-
-    			$this->getDb()->insert('offrir',$echantillon);
-    		}
-    	}
+    	$echantillons = explode(";",$echantillonData["strEch"]);
+        
+        for ($i = 1; $i < sizeof($echantillons); $i++){
+            $aInserer = array(
+                'quantite' => "1",
+                'id' => $echantillons[$i],
+                'id_Rapport' => $echantillonData['n_rapport'],   
+            );
+            $this->getDb()->insert('offrir',$aInserer);
+        } 
     }
 	
     protected function buildrapport($row) {
