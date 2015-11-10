@@ -1,0 +1,62 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+
+
+{% block content %}
+
+<div class="row">
+	<div class="col-md-5">
+		{{ form_start(praticienForm, {'attr' : {'class' : 'form-horizontal'} }) }}
+			<div class="form-group">
+				{{ form_label(praticienForm.nom, 'Nom', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(praticienForm.nom) }}
+				{{ form_widget(praticienForm.nom, { 'attr': { 'class': 'form-control'}}) }}
+			</div>
+			<div class="form-group">
+				{{ form_label(praticienForm.prenom, 'Prenom', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(praticienForm.prenom) }}
+				{{ form_widget(praticienForm.prenom, { 'attr': { 'class': 'form-control'}}) }}
+			</div>
+			<div class="form-group">
+				{{ form_label(praticienForm.adresse, 'Adresse', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(praticienForm.adresse) }}
+				{{ form_widget(praticienForm.adresse, { 'attr': { 'class': 'form-control'}}) }}
+			</div>
+			<div class="form-group">
+				{{ form_label(praticienForm.CP, 'Code Postal', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(praticienForm.CP) }}
+				{{ form_widget(praticienForm.CP, { 'attr': { 'class': 'form-control'}}) }}
+			</div>
+			<div class="form-group">
+				{{ form_label(praticienForm.ville, 'Ville', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(praticienForm.ville) }}
+				{{ form_widget(praticienForm.ville, { 'attr': { 'class': 'form-control'}}) }}
+			</div>
+			<div class="form-group">
+				{{ form_label(praticienForm.coefNotoriete, 'Coefficient de Notoriete', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(praticienForm.coefNotoriete) }}
+				{{ form_widget(praticienForm.coefNotoriete, { 'attr': { 'class': 'form-control'}}) }}
+			</div>
+			<div class="form-group">
+				{{ form_label(praticienForm.coefConfiance, 'Coefficient de Confiance', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(praticienForm.coefConfiance) }}
+				{{ form_widget(praticienForm.coefConfiance, { 'attr': { 'class': 'form-control'}}) }}
+			</div>
+			<div class="form-group">
+				{{ form_label(praticienForm.idType, 'Lieu d\'exercice', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(praticienForm.idType) }}
+				{{ form_widget(praticienForm.idType, { 'attr': { 'class': 'form-control'}}) }}
+			</div>
+
+			<div class="form-group col-md-8">
+				<div class="pull-right">
+					<a href="{{ app.url_generator.generate('listPraticien') }}" class="btn btn-primary btn-ls" > Retour</a>
+				</div>
+			</div>
+		{{ form_end(praticienForm) }}
+	</div>
+</div>
+
+{% endblock %}

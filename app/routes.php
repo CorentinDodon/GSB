@@ -15,13 +15,21 @@ $app->get('/login', "GSB\Controller\LoginController::loginAction")
 	->bind('login');
 $app->get('/admin/accueil', "GSB\Controller\LoginController::indexAction")
 	->bind('index');
-$app->get('/admin/praticien', "GSB\Controller\PraticienController::indexAction")
+
+$app->match('/admin/praticien', "GSB\Controller\PraticienController::indexAction")
 	->bind('listPraticien');
+$app->match('/admin/praticien/{id}', "GSB\Controller\PraticienController::afficheAction");
+
 $app->get('/admin/medicament', "GSB\Controller\MedicamentController::indexAction")
 	->bind('listMedicament');
+$app->get('/admin/medicament/{id}', "GSB\Controller\MedicamentController::afficheAction");
+
 $app->get('/admin/visiteur', "GSB\Controller\VisiteurController::indexAction")
 	->bind('listVisiteur');
+$app->get('/admin/visiteur/{id}', "GSB\Controller\VisiteurController::afficheAction");
+
 $app->get('/admin/rapport', "GSB\Controller\RapportController::indexAction")
 	->bind('listRapport');
+$app->get('/admin/rapport/{id}', "GSB\Controller\RapportController::afficheAction");
 $app->match('/admin/rapport/add', "GSB\Controller\RapportController::addRapportAction")
 	->bind('addRapport');
