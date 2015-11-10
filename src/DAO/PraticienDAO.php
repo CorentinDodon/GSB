@@ -20,6 +20,23 @@ class PraticienDAO extends DAO
 
     }
 
+    public function find($id) {
+        $sql = 'SELECT * FROM praticien WHERE id= '.$id;
+        $row = $this->db->prepare($sql);
+        $row->execute();
+        $row = $this->db->fetchAssoc($sql, array($id));
+
+        return $this->buildPraticiens($row);
+    }
+
+    public function findType($id) {
+        $sql = 'SELECT nom from type_praticien where id ='.$id;
+        $row = $this->db->prepare($sql);
+        $row->execute();
+        $row = $this->db->fetchAssoc($sql, array($id));
+        return $row;
+    }
+
     public function findAllAsArray()
     {
     	$sql = 'SELECT id, nom, prenom FROM praticien ORDER BY nom ASC';
@@ -41,10 +58,14 @@ class PraticienDAO extends DAO
         $praticien = new Praticiens();
 
         $praticien->setId($row['id']);
-
         $praticien->setNom($row['nom']);
-
         $praticien->setPrenom($row['prenom']);
+        $praticien->setAdresse($row['adresse']);
+        $praticien->setCP($row['CP']);
+        $praticien->setVille($row['ville']);
+        $praticien->setCoefNotoriete($row['coefNotoriete']);
+        $praticien->setCoefConfiance($row['coefConfiance']);
+        $praticien->setIdType($row['id_Type']);
 
         return $praticien;
 

@@ -1,0 +1,39 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+
+
+{% block content %}
+
+<div class="row">
+	<div class="col-md-5">
+		{{ form_start(praticienForm, {'attr' : {'class' : 'form-horizontal'} }) }}
+			<div class="form-group">
+				{{ form_label(praticienForm.idType, 'Choisir le praticien', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(praticienForm.idType) }}
+				{{ form_widget(praticienForm.idType, { 'attr': { 'class': 'form-control'}}) }}
+			</div>
+			<div class="form-group col-md-8">
+				<div class="pull-right">
+					<a type="submit" id="btn" href="{{ app.url_generator.generate('listPraticien') }}/" class="btn btn-primary btn-ls"> Afficher</a>
+				</div>
+			</div>
+		{{ form_end(praticienForm) }}
+	</div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+
+<script>
+document.getElementById("btn").onclick = function(){
+	var btn    = document.getElementById("btn");
+	var select = document.getElementById("praticien_idType");
+	var id     = select.options[select.selectedIndex].value;
+	btn.href = btn.href + id;
+}
+</script>
+
+{% endblock %}
