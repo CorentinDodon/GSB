@@ -96,6 +96,7 @@ document.getElementById("rapport_echantillon").onchange = function(){
 	  	strEch.value = strEch.value + ";" + idEch;
 	  	//enlever l'item choisi de la liste
 	  	liste.options[liste.selectedIndex].text = "";
+	  	liste.options[liste.selectedIndex].disabled = true;	
 	  	//div(liste.options[index]).innerHTML = "";
 	  	document.getElementById("btnSuppr").style.visibility = "visible";
   	} else{
