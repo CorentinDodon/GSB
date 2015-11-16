@@ -23,6 +23,70 @@ class RapportDAO extends DAO
 	    return $rapports;
     }
 
+    public function findMeAsArray(Application $app)
+    {
+        $id = $app['user']->getId();
+        $sql = "SELECT rapport.id, rapport.dateRap, praticien.nom, praticien.prenom
+                FROM rapport, praticien
+                WHERE rapport.id_Praticien = praticien.id
+                AND rapport.id_Employe = ".$id;
+
+        $result = $this->getDb()->fetchAll($sql);
+        $rapports = array();
+        foreach ($result as $row) {
+            $rapportId = $row['id'];
+            $rapports[$rapportId] = $row['dateRap']. ' : '.$row['nom']. ' '.$row['prenom'];
+        }
+        return $rapports;
+
+    }
+
+    public function find($id)
+    {
+        $sql = "SELECT *
+                FROM rapport
+                WHERE id = " . $id;
+        $row = $this->db->prepare($sql);
+        $row->execute();
+        $row = $this->db->fetchAssoc($sql, array($id));
+      
+        return $this->buildRapport($row);  
+    }
+
+    public function findPraticien($id)
+    {
+        $sql = 'SELECT nom, prenom from praticien where id ='.$id;
+        $row = $this->db->prepare($sql);
+        $row->execute();
+        $row = $this->db->fetchAssoc($sql, array($id));
+        return $row;
+    }
+
+    public function findMotif($id)
+    {
+        $sql = 'SELECT nom from motif where id ='.$id;
+        $row = $this->db->prepare($sql);
+        $row->execute();
+        $row = $this->db->fetchAssoc($sql, array($id));
+        return $row;
+    }
+
+    public function findEchantillon($id)
+    {
+        $sql = 'SELECT medicament.nom 
+                from medicament,offrir 
+                where medicament.id = offrir.id
+                and offrir.id_Rapport = '.$id;
+        $result = $this->db->prepare($sql);
+        $result->execute();
+        $result = $this->db->fetchAll($sql);
+        $echantillons = ""; 
+        foreach ($result as $row) {
+            $echantillons = $echantillons. '  '. $row['nom'];
+        }
+        return $echantillons;
+    }
+
     public function save(Rapport $rapport, Application $app){
     	$rapportData = array(
     		'dateRap'			=> $rapport->getDateRap()->format('Y-m-d'),
@@ -61,9 +125,9 @@ class RapportDAO extends DAO
         $rapport->setDateRap($row['dateRap']);
         $rapport->setBilan($row['bilan']);
         $rapport->setDateVisite($row['dateVisite']);
-        $rapport->setIdEmploye($row['idEmploye']);
-		$rapport->setIdPratician($row['idPraticien']);		
-		$rapport->setIdMotif($row['idMotif']);			  
+        $rapport->setIdEmploye($row['id_Employe']);
+		$rapport->setIdPraticien($row['id_Praticien']);		
+		$rapport->setIdMotif($row['id_motif']);			  
         return $rapport;
     }
 

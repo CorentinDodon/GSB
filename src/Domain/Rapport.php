@@ -19,6 +19,8 @@ class Rapport
 	private $echantillon;
 
 	private $strEchantillon;
+
+    private $idEmploye;
 	
 	
 
@@ -84,6 +86,14 @@ class Rapport
 
     public function setStrEchantillon($strEchantillon) {
         $this->strEchantillon = $strEchantillon;
-    }    
+    }   
+
+    public function getIdEmploye() {
+        return $this->idEmploye;
+    }
+
+    public function setIdEmploye($idEmploye) {
+        $this->idEmploye = $idEmploye;
+    } 
 
 }
