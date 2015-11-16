@@ -28,8 +28,11 @@ $app->get('/admin/visiteur', "GSB\Controller\VisiteurController::indexAction")
 	->bind('listVisiteur');
 $app->get('/admin/visiteur/{id}', "GSB\Controller\VisiteurController::afficheAction");
 
-$app->get('/admin/rapport', "GSB\Controller\RapportController::indexAction")
+$app->match('/admin/rapport', "GSB\Controller\RapportController::indexAction")
 	->bind('listRapport');
-$app->get('/admin/rapport/{id}', "GSB\Controller\RapportController::afficheAction");
+		
 $app->match('/admin/rapport/add', "GSB\Controller\RapportController::addRapportAction")
 	->bind('addRapport');
+
+$app->match('/admin/rapport/{id}', "GSB\Controller\RapportController::afficheAction");
+
