@@ -59,6 +59,7 @@
 
 			</div>
 
+			<div id="btnSuppr" class="btn btn-danger" style="visibility:hidden" onClick="ClickSuppr()">Supprimer</div>
 			<div class="form-group">	
 				{{ form_errors(rapportForm.echantillon) }}
 				{{ form_widget(rapportForm.echantillon, { 'attr': { 'class': 'form-control'}}) }}
@@ -79,7 +80,6 @@
 {% block javascript %}
 
 <script>
-
 document.getElementById("rapport_echantillon").onchange = function(){
 	var idEch  = document.getElementById("rapport_echantillon").value;
 	var value  = document.getElementById("rapport_echantillon").options[document.getElementById('rapport_echantillon').selectedIndex].text;
@@ -95,17 +95,21 @@ document.getElementById("rapport_echantillon").onchange = function(){
 	  	div.appendChild(node);
 	  	strEch.value = strEch.value + ";" + idEch;
 	  	//enlever l'item choisi de la liste
-	  	liste.options[index] = null;
-	  	document.getElementById("btnSuppr").style.display = "initial";
+	  	liste.options[liste.selectedIndex].text = "";
+	  	liste.options[liste.selectedIndex].disabled = true;	
+	  	//div(liste.options[index]).innerHTML = "";
+	  	document.getElementById("btnSuppr").style.visibility = "visible";
   	} else{
   		alert("Impossible de choisir plus de 10 echantillons");
   	}
 };
-
-function Supprimer(){
+</script>
+<script type="text/javascript">
+function ClickSuppr(){
 	document.getElementById("lstMedChoisi").innerHTML = "";
+	document.getElementById("rapport_strEchantillon").value = "";
+	location.reload();
 }
-
 </script>
 
 {% endblock %}

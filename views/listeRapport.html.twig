@@ -1,0 +1,39 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+
+
+{% block content %}
+
+<div class="row">
+	<div class="col-md-5">
+		{{ form_start(rapportForm, {'attr' : {'class' : 'form-horizontal'} }) }}
+			<div class="form-group">
+				{{ form_label(rapportForm.id, 'Choisir le rapport', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(rapportForm.id) }}
+				{{ form_widget(rapportForm.id, { 'attr': { 'class': 'form-control'}}) }}
+			</div>
+			<div class="form-group col-md-8">
+				<div class="pull-right">
+					<a type="submit" id="btn" href="{{ app.url_generator.generate('listRapport') }}/" class="btn btn-primary btn-ls"> Afficher</a>
+				</div>
+			</div>
+		{{ form_end(rapportForm) }}
+	</div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+
+<script>
+document.getElementById("btn").onclick = function(){
+	var btn    = document.getElementById("btn");
+	var select = document.getElementById("rapport_id");
+	var id     = select.options[select.selectedIndex].value;
+	btn.href = btn.href + id;
+}
+</script>
+
+{% endblock %}

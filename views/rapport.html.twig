@@ -1,23 +1,57 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}{{ Rapport de visite }}{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
 
 
 {% block content %}
+<div class="row">
+	<div class="col-md-5">
+		{{ form_start(rapportForm, {'attr' : {'class' : 'form-horizontal'} }) }}
+			<div class="form-group">
+				{{ form_label(rapportForm.idPraticien, 'Le praticien', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(rapportForm.idPraticien) }}
+				{{ form_widget(rapportForm.idPraticien, { 'attr': { 'class': 'form-control'}}) }}
+			</div>
 
- <tr>
-    <td>numero du raport : <input type="text" name="id_Rapport"></td>
-    <td>nom praticien :<SELECT name="Praticien"> 
+			<div class="form-group">
+				{{ form_label(rapportForm.dateRap, 'La date de rappel de visite', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(rapportForm.dateRap) }}
+				{{ form_widget(rapportForm.dateRap, { 'attr': { 'class': 'form-control'}}) }}
+			</div>
 
-    {% for rapport in rapports %}
-      $coucou = rapport.id
-      var_dump($coucou)
-    {% else %}
+			<div class="form-group">
+				{{ form_label(rapportForm.dateVisite, 'La date de visite', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(rapportForm.dateVisite) }}
+				{{ form_widget(rapportForm.dateVisite, { 'attr': { 'class': 'form-control'}}) }}
+			</div>
 
-    {% endfor %}
+			<div class="form-group">
+				{{ form_label(rapportForm.idMotif, 'Le motif de la visite', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(rapportForm.idMotif) }}
+				{{ form_widget(rapportForm.idMotif, { 'attr': { 'class': 'form-control'}}) }}
+			</div>
 
-</tr>         
+			<div class="form-group">
+				{{ form_label(rapportForm.bilan, 'Le bilan', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(rapportForm.bilan) }}
+				{{ form_widget(rapportForm.bilan, { 'attr': { 'class': 'form-control'}}) }}
+			</div>
 
+			<div class="form-group">
+				{{ form_label(rapportForm.echantillon, 'Les echantillons', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(rapportForm.echantillon) }}
+				{{ form_widget(rapportForm.echantillon, { 'attr': { 'class': 'form-control'}}) }}
+			</div>
+
+			<div class="form-group col-md-8">
+				<div class="pull-right">
+					<a href="{{ app.url_generator.generate('listRapport') }}" class="btn btn-primary btn-ls" > Retour</a>
+				</div>
+			</div>
+
+		{{ form_end(rapportForm) }}
+	</div>
+</div>
 
 {% endblock %}
