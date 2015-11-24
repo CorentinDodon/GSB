@@ -43,6 +43,7 @@ class MedicamentsDAO extends DAO
         $medicament->setId($row['id']);
 
         $medicament->setNom($row['nom']);
+        
 
         return $medicament;
 
