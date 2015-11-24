@@ -20,6 +20,18 @@ class MedicamentsDAO extends DAO
 
     }
 
+    public function find($id)
+    {
+        $sql = 'SELECT * 
+        FROM medicament 
+        WHERE medicament.id = '.$id;
+        $result = $this->db->prepare($sql);
+        $result->execute();
+        $result = $this->db->fetechAssoc($sql, array($id));
+        return this->buildMedicaments($result)
+    }
+
+
     public function findAllAsArray()
     {
     	$sql = 'SELECT id, nom FROM medicament ORDER BY nom ASC';
