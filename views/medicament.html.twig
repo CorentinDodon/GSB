@@ -21,14 +21,14 @@
 				{{ form_widget(medicamentForm.composition, { 'attr': { 'class': 'form-control'}}) }}
 			</div>
 			<div class="form-group">
-				{{ form_label(medicamentForm.contreindication, 'contreindication(s) du medicament', {'label_attr':{'class': 'control-label'} }) }}
-				{{ form_errors(medicamentForm.contreindication) }}
-				{{ form_widget(medicamentForm.contreindication, { 'attr': { 'class': 'form-control'}}) }}
-			</div>
-			<div class="form-group">
 				{{ form_label(medicamentForm.effets, 'Effet(s) du medicament :', {'label_attr':{'class': 'control-label'} }) }}
 				{{ form_errors(medicamentForm.effets) }}
 				{{ form_widget(medicamentForm.effets, { 'attr': { 'class': 'form-control'}}) }}
+			</div>
+			<div class="form-group">
+				{{ form_label(medicamentForm.contreindication, 'contreindication(s) du medicament', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(medicamentForm.contreindication) }}
+				{{ form_widget(medicamentForm.contreindication, { 'attr': { 'class': 'form-control'}}) }}
 			</div>
 			<div class="form-group">		
 				{{ form_label(medicamentForm.idFamille, 'Famille du medicament ', {'label_attr':{'class': 'control-label'} }) }}

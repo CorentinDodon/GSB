@@ -11,7 +11,7 @@ class MedicamentsDAO extends DAO
 	    $result = $this->db->fetchAll($sql);
 
 	    // Convert query result to an array of domain objects
-	    $praticiens = array();
+	    $medicaments = array();
 	    foreach ($result as $row) {
 	        $medicamentId = $row['id'];
 	        $medicaments[$medicamentId] = $this->buildMedicaments($row);
@@ -43,7 +43,7 @@ class MedicamentsDAO extends DAO
         $medicament->setId($row['id']);
 
         $medicament->setNom($row['nom']);
-        
+
 
         return $medicament;
 
