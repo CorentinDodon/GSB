@@ -4,23 +4,24 @@ namespace GSB\Controller;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
-use GSB\Domain\Medicament
+use GSB\Domain\Medicaments;
+use GSB\Form\Type\ListemedicamentType;
+use GSB\Form\Type\medicamentType;
 
 
-
-class MedicamentController
+class medicamentController
 {
 	public function indexAction(Application $app, Request $request)
 	{
 		$medicaments = $app['dao.medicament']->findAllAsArray();
-		$medicament = new medicament();
-		$medicamentForm = $app['form.factory']->create(new ListeMedicamentType(), $medicament, [
-			'medicamentChoices'  => $medicament, 
+		$medicamet = new Medicaments();
+		$medicamentForm = $app['form.factory']->create(new ListemedicamentType(), $medicament, [
+			'medicamentsChoices'  => $medicaments, 
 			]);
 		$medicamentForm->handleRequest($request);
 
-        return $app['twig']->render('listeMedicament.html.twig', array(
-        	'medicament' => $medicament,
+        return $app['twig']->render('listemedicament.html.twig', array(
+        	'medicaments' => $medicaments,
         	'title'       => 'Choix medicament',
             'medicamentForm' => $medicamentForm->createView(),
         	));
@@ -28,18 +29,18 @@ class MedicamentController
 
 	public function afficheAction($id, Application $app, Request $request)
 	{
-		$medicament = $app['dao.medicament']->find($id);
-		$idType = $medicament->getIdType();
+		$medicaments = $app['dao.medicament']->find($id);
+		$idType = $medicaments->getIdType();
 		$nom = $app['dao.medicament']->findType($idType);
-		$medicament->setIdType($nom['nom']);
+		$medicaments->setIdType($nom['nom']);
 
-		$medicamentForm = $app['form.factory']->create(new medicamentType(), $medicament);
+		$medicamentForm = $app['form.factory']->create(new medicamentType(), $medicaments);
         $medicamentForm->handleRequest($request);
 
         return $app['twig']->render('medicament.html.twig', array(
-        	'medicament' => $medicament,
+        	'medicaments' => $medicaments,
         	'title'		=> 'Détail du medicament',
-        	'medicamentForm' => $praticienForm->createView(),
+        	'medicamentForm' => $medicamentForm->createView(),
         	));
 	}
 }
