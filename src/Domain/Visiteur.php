@@ -2,24 +2,24 @@
 
 namespace GSB\Domain;
 
-class Rapport
+class Visiteur
 {
 	//variable privée
-	private id;
+	private $id;
 
-	private nom;
+	private $nom;
 
-	private prenom;
+	private $prenom;
 	
-	private adresse;
+	private $adresse;
 	
-	private CP;
+	private $CP;
 	
-	private ville;
+	private $ville;
 	
-	private secteur;
+	private $idSecteur;
 	
-	private nomLabo;
+	
 	
 	//getters
 	public function getId() {
@@ -29,7 +29,11 @@ class Rapport
     public function getNom(){
     	return $this->nom;
     }
-
+	
+	public function getPrenom(){
+    	return $this->prenom;
+    }
+	
     public function getAdresse(){
     	return $this->adresse;
     }
@@ -42,13 +46,11 @@ class Rapport
         return $this->ville;
     }
 	
-	public function getSecteur(){
-		return $this->secteur
+	public function getIdSecteur(){
+		return $this->idSecteur;
 	}
 	
-	public function getNomLabo(){
-    	return $this->nomLabo;
-    }
+	
 	
 	//setters
 	 public function setId($id){
@@ -59,7 +61,11 @@ class Rapport
 		$this->nom = $nom; 
 	}
 	
-	public function setAdresse($Adresse){
+	public function setPrenom($prenom){
+		$this->prenom = $prenom; 
+	}
+	
+	public function setAdresse($adresse){
 		$this->adresse = $adresse; 
 	}
 	
@@ -71,12 +77,10 @@ class Rapport
 		$this->ville = $ville;
 	}
 	
-	public function setSecteur($secteur){
-		$this->secteur = $secteur;
+	public function setIdSecteur($idSecteur){
+		$this->idSecteur = $idSecteur;
 	}
 	
-	public function setNomLabo($nomLabo){
-		$this->nomLabo = $nomLabo;
-	}
+	
 
 }
