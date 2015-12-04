@@ -1,0 +1,48 @@
+ {% extends 'layout.html.twig' %}
+
+	{% block title %} {{ Medicament }} {% endblock %}
+
+
+{% block content %}
+
+<div class="row">
+	<div class="col-md-5">
+		{{ form_start(medicamentForm, {'attr' : {'class' : 'form-horizontal'} }) }}
+		</div>
+			<div class="form-group">
+				{{ form_label(medicamentForm.nom, 'nom du medicament', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(medicamentForm.nom) }}
+				{{ form_widget(medicamentForm.nom, { 'attr': { 'class': 'form-control'}}) }}
+			</div>
+
+			<div class="form-group">
+				{{ form_label(medicamentForm.Composition, 'Composition du medicament', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(medicamentForm.composition) }}
+				{{ form_widget(medicamentForm.composition, { 'attr': { 'class': 'form-control'}}) }}
+			</div>
+			<div class="form-group">
+				{{ form_label(medicamentForm.effets, 'Effet(s) du medicament :', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(medicamentForm.effets) }}
+				{{ form_widget(medicamentForm.effets, { 'attr': { 'class': 'form-control'}}) }}
+			</div>
+			<div class="form-group">
+				{{ form_label(medicamentForm.contreindication, 'contreindication(s) du medicament', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(medicamentForm.contreindication) }}
+				{{ form_widget(medicamentForm.contreindication, { 'attr': { 'class': 'form-control'}}) }}
+			</div>
+			<div class="form-group">		
+				{{ form_label(medicamentForm.idFamille, 'Famille du medicament ', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(medicamentForm.idFamille) }}
+				{{ form_widget(medicamentForm.idFamille, { 'attr': { 'class': 'form-control'}}) }}
+			</div>
+			<div class="form-group col-md-8">
+				<div class="pull-right">
+					<a href="{{ app.url_generator.generate('listMedicament') }}" class="btn btn-primary btn-ls" > Retour</a>
+				</div>
+			</div>
+		{{ form_end(praticienForm) }}
+	</div>
+</div>
+
+
+{% endblock %}

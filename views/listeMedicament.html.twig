@@ -1,0 +1,39 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+
+
+{% block content %}
+
+<div class="row">
+	<div class="col-md-5">
+		{{ form_start(medicamentForm, {'attr' : {'class' : 'form-horizontal'} }) }}
+			<div class="form-group">
+				{{ form_label(medicamentForm.id, 'Choisir le medicament', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(medicamentForm.id) }}
+				{{ form_widget(medicamentForm.id, { 'attr': { 'class': 'form-control'}}) }}
+			</div>
+			<div class="form-group col-md-8">
+				<div class="pull-right">
+					<a type="submit" id="btn" href="{{ app.url_generator.generate('listMedicament') }}/" class="btn btn-primary btn-ls"> Afficher</a>
+				</div>
+			</div>
+		{{ form_end(medicamentForm) }}
+	</div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+
+<script>
+document.getElementById("btn").onclick = function(){
+	var btn    = document.getElementById("btn");
+	var select = document.getElementById("medicament_id");
+	var id     = select.options[select.selectedIndex].value;
+	btn.href = btn.href + id;
+}
+</script>
+
+{% endblock %}
