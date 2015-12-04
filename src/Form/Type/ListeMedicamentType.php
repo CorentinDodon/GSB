@@ -11,8 +11,8 @@ class ListeMedicamentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('idFamille', 'choice', array(
-                    'choices' => $options['medicamentsChoices'],
+        ->add('id', 'choice', array(
+                    'choices' => $options['medicamentChoices'],
             ));
     }
 
@@ -24,6 +24,6 @@ class ListeMedicamentType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setRequired(['medicamentsChoices']);
-        $resolver->setDefaults(['medicamentsChoices' => array()]);
+        $resolver->setDefaults(['medicamentChoices' => array()]);
     }
 }

@@ -16,7 +16,6 @@ class Medicaments
 
     private $idFamille;
 
-
 	public function getId() {
         return $this->id;
     }
@@ -29,10 +28,6 @@ class Medicaments
         return $this->composition;
     }
 
-    public function getEffets(){
-        return $this->effets;
-    }
-
      public function getContreindication(){
         return $this->contreindication;
     }
@@ -40,7 +35,6 @@ class Medicaments
      public function getIdFamille(){
         return $this->idFamille;
     }
-
 
     public function setId($id){
     	$this->id = $id;
@@ -50,23 +44,17 @@ class Medicaments
     	$this->nom = $nom;
     }
 
-    public function setComposition($composition){
-        $this->composition = $composition;
+    public function setComposition(){
+        return $this->composition;
     }
 
-    public function setEffets($effets){
-        $this->effets = $effets;
+     public function setContreindication(){
+        return $this->contreindication;
     }
 
-    public function setContreindication($contreindication){
-        $this->contreindication = $contreindication;
+     public function setIdFamille(){
+        return $this->idFamille;
     }
-
-    public function setIdFamille($idFamille){
-        $this->idFamille = $idFamille;
-    }
-
-
 
 
 }
