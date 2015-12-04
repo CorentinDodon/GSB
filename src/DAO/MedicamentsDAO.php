@@ -22,13 +22,11 @@ class MedicamentsDAO extends DAO
 
     public function find($id)
     {
-        $sql = 'SELECT * 
-        FROM medicament 
-        WHERE medicament.id = '.$id;
+        $sql = 'SELECT * FROM medicament WHERE medicament.id = '.$id;
         $result = $this->db->prepare($sql);
         $result->execute();
-        $result = $this->db->fetechAssoc($sql, array($id));
-        return this->buildMedicaments($result)
+        $result = $this->db->fetchAssoc($sql, array($id));
+        return $this->buildMedicaments($result);
     }
 
 
@@ -48,7 +46,15 @@ class MedicamentsDAO extends DAO
     	return $medicaments;
     }
 
-    private function buildMedicaments(array $row) {
+    public function findFamilleMedic($id) {
+        $sql = 'SELECT nom from famille where id ='.$id;
+        $row = $this->db->prepare($sql);
+        $row->execute();
+        $row = $this->db->fetchAssoc($sql, array($id));
+        return $row;
+    }
+
+    protected function buildMedicaments(array $row) {
 
         $medicament = new Medicaments();
 
@@ -56,6 +62,13 @@ class MedicamentsDAO extends DAO
 
         $medicament->setNom($row['nom']);
 
+        $medicament->setComposition($row['composition']);
+
+        $medicament->setEffets($row['effets']);
+
+        $medicament->setContreindication($row['contreindication']);
+
+        $medicament->setIdFamille($row['id_Famille']);
 
         return $medicament;
 
