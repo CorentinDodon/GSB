@@ -1,0 +1,39 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+
+
+{% block content %}
+
+<div class="row">
+	<div class="col-md-5">
+		{{ form_start(visiteurForm, {'attr' : {'class' : 'form-horizontal'} }) }}
+			<div class="form-group">
+				{{ form_label(visiteurForm.idSecteur, 'Choisir le visiteur', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_errors(visiteurForm.idSecteur) }}
+				{{ form_widget(visiteurForm.idSecteur, { 'attr': { 'class': 'form-control'}}) }}
+			</div>
+			<div class="form-group col-md-8">
+				<div class="pull-right">
+					<a type="submit" id="btn" href="{{ app.url_generator.generate('listVisiteur') }}/" class="btn btn-primary btn-ls"> Afficher</a>
+				</div>
+			</div>
+		{{ form_end(visiteurForm) }}
+	</div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+
+<script>
+document.getElementById("btn").onclick = function(){
+	var btn    = document.getElementById("btn");
+	var select = document.getElementById("visiteur_idSecteur");
+	var id     = select.options[select.selectedIndex].value;
+	btn.href = btn.href + id;
+}
+</script>
+
+{% endblock %}

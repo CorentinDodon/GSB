@@ -48,3 +48,7 @@ $app['dao.rapport'] = $app->share(function ($app) {
 $app['dao.motif'] = $app->share(function ($app) {
     return new GSB\DAO\MotifDAO($app['db']);
 });
+
+$app['dao.visiteur'] = $app->share(function ($app) {
+    return new GSB\DAO\VisiteurDAO($app['db']);
+});
