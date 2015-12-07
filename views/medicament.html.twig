@@ -1,6 +1,6 @@
  {% extends 'layout.html.twig' %}
 
-	{% block title %} {{ Medicament }} {% endblock %}
+{% block title %} {{ title }} {% endblock %}
 
 
 {% block content %}
@@ -16,7 +16,7 @@
 			</div>
 
 			<div class="form-group">
-				{{ form_label(medicamentForm.Composition, 'Composition du medicament', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_label(medicamentForm.composition, 'Composition du medicament', {'label_attr':{'class': 'control-label'} }) }}
 				{{ form_errors(medicamentForm.composition) }}
 				{{ form_widget(medicamentForm.composition, { 'attr': { 'class': 'form-control'}}) }}
 			</div>
@@ -40,7 +40,7 @@
 					<a href="{{ app.url_generator.generate('listMedicament') }}" class="btn btn-primary btn-ls" > Retour</a>
 				</div>
 			</div>
-		{{ form_end(praticienForm) }}
+		{{ form_end(medicamentForm) }}
 	</div>
 </div>
 
