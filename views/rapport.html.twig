@@ -45,13 +45,24 @@
 			</div>
 
 			<div class="form-group col-md-8">
-				<div class="pull-right">
+				<div class="pull-left">
 					<a href="{{ app.url_generator.generate('listRapport') }}" class="btn btn-primary btn-ls" > Retour</a>
+				</div>
+				<div class="pull-right">
+					<a href="{{ app.url_generator.generate('listRapport') }}/{{ rapport.id }}/edit" class="btn btn-primary btn-ls" > Modifier</a>
 				</div>
 			</div>
 
 		{{ form_end(rapportForm) }}
 	</div>
 </div>
+
+{% endblock %}
+
+{% block javascript %}
+
+<script>
+
+</script>
 
 {% endblock %}

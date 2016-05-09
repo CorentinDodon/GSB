@@ -118,6 +118,41 @@ class RapportDAO extends DAO
             $this->getDb()->insert('offrir',$aInserer);
         } 
     }
+    
+    public function update(Rapport $rapport, Application $app)
+    {
+        $rapportData = array(
+    		'dateRap'			=> $rapport->getDateRap()->format('Y-m-d'),
+    		'dateVisite'		=> $rapport->getDateVisite()->format('Y-m-d'),
+    		'id_Employe'		=> $app['user']->getId(),
+    		'id_motif'			=> $rapport->getIdMotif(),
+    		'bilan'				=> $rapport->getBilan(),
+    		'id_Praticien'		=> $rapport->getIdPraticien(),
+    		);
+        $this->getDb()->update('rapport',$rapportData,array('id'=>$rapport->getId()));
+        
+        $sql = 'DELETE FROM offrir 
+                WHERE id_Rapport = '.$rapport->getId();
+        $result = $this->db->prepare($sql);
+        $result->execute();
+        
+        $echantillonData = array(
+    		'n_rapport'		=> $rapport->getId(),
+    		'strEch'        => $rapport->getStrEchantillon(),
+    		);
+
+    	$echantillons = explode(";",$echantillonData["strEch"]);
+        
+        for ($i = 1; $i < sizeof($echantillons); $i++){
+            $aInserer = array(
+                'quantite' => "1",
+                'id' => $echantillons[$i],
+                'id_Rapport' => $echantillonData['n_rapport'],   
+            );
+            $this->getDb()->insert('offrir',$aInserer);
+        } 
+        
+    }
 	
     protected function buildrapport($row) {
         $rapport = new rapport();
