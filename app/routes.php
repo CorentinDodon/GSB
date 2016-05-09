@@ -36,3 +36,5 @@ $app->match('/admin/rapport/add', "GSB\Controller\RapportController::addRapportA
 
 $app->match('/admin/rapport/{id}', "GSB\Controller\RapportController::afficheAction");
 
+$app->match('/admin/rapport/{id}/edit', "GSB\Controller\RapportController::editAction");
+

@@ -4,6 +4,7 @@ namespace GSB\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class RapportType extends AbstractType
 {
@@ -11,22 +12,22 @@ class RapportType extends AbstractType
     {
         $builder
             ->add('dateRap','text',array(
-                  'disabled' => true
+                  'disabled' => $options['disable']
                   ))
             ->add('dateVisite','text',array(
-                  'disabled' => true
+                  'disabled' => $options['disable']
                   ))
             ->add('idPraticien', 'text',array(
-                  'disabled' => true
+                  'disabled' => $options['disable']
                   ))
             ->add('idMotif', 'text',array(
-                  'disabled' => true
+                  'disabled' => $options['disable']
                   ))
             ->add('bilan','textarea',array(
-                  'disabled' => true
+                  'disabled' => $options['disable']
                   ))
             ->add('echantillon', 'textarea',array(
-                  'disabled' => true
+                  'disabled' => $options['disable']
                   ))
             ;
 
@@ -37,4 +38,8 @@ class RapportType extends AbstractType
         return 'rapport';
     }
 
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+      $resolver->setRequired(['disable']);
+    }
 }

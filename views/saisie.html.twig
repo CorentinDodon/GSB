@@ -56,10 +56,10 @@
 			</div>
 
 			<div id="lstMedChoisi">
-
+                
 			</div>
 
-			<div id="btnSuppr" class="btn btn-danger" style="visibility:hidden" onClick="ClickSuppr()">Supprimer</div>
+			
 			<div class="form-group">	
 				{{ form_errors(rapportForm.echantillon) }}
 				{{ form_widget(rapportForm.echantillon, { 'attr': { 'class': 'form-control'}}) }}
@@ -81,35 +81,60 @@
 
 <script>
 document.getElementById("rapport_echantillon").onchange = function(){
+    //idEch = id de l'echantillon
 	var idEch  = document.getElementById("rapport_echantillon").value;
+    //value = nom du medicament
 	var value  = document.getElementById("rapport_echantillon").options[document.getElementById('rapport_echantillon').selectedIndex].text;
   	var liste  = document.getElementById("rapport_echantillon");
   	var index  = document.getElementById("rapport_echantillon").selectedIndex;
   	var strEch = document.getElementById("rapport_strEchantillon");
-
+    
   	//value contient le nom de l'item choisi dans le select
   	var div = document.getElementById("lstMedChoisi");
   	if(document.getElementById("lstMedChoisi").childNodes.length <= 10){
-  	  	var node = document.createElement("div");
+        var nodeGrp = document.createElement("div");
+        var node = document.createElement("div");
+        var nodeBtn = document.createElement("div");
+        
 	  	node.textContent = value;
-	  	div.appendChild(node);
-	  	strEch.value = strEch.value + ";" + idEch;
-	  	//enlever l'item choisi de la liste
-	  	liste.options[liste.selectedIndex].text = "";
+        node.id = liste.selectedIndex + "/" + idEch;
+        
+        nodeGrp.id = "grp" + document.getElementById("lstMedChoisi").childNodes.length;
+	  	nodeGrp.appendChild(node);
+        
+        nodeBtn.className = "btn btn-danger";
+        nodeBtn.id = "btnSuppr" + document.getElementById("lstMedChoisi").childNodes.length;
+        nodeBtn.textContent = "Supprimer";
+        nodeBtn.setAttribute("onClick", "ClickSuppr(" + nodeBtn.id + ")");
+        
+        nodeGrp.appendChild(nodeBtn);
+        div.appendChild(nodeGrp);
+	  	
+        strEch.value = strEch.value + ";" + idEch;
+	  	
 	  	liste.options[liste.selectedIndex].disabled = true;	
-	  	//div(liste.options[index]).innerHTML = "";
-	  	document.getElementById("btnSuppr").style.visibility = "visible";
   	} else{
   		alert("Impossible de choisir plus de 10 echantillons");
   	}
 };
-</script>
-<script type="text/javascript">
-function ClickSuppr(){
-	document.getElementById("lstMedChoisi").innerHTML = "";
-	document.getElementById("rapport_strEchantillon").value = "";
-	location.reload();
+
+function ClickSuppr(btn){
+    var numGrp = btn.parentElement.id;
+    //rankOrId[0] = rang dans la liste des medicaments
+    //rankOrId[1] = id du medicament
+    var rankOrId = btn.parentElement.firstChild.id.split("/");
+  	var strEch = document.getElementById("rapport_strEchantillon");
+    
+    //Enlever l'id du medicament de la liste a sauvegarder
+    strEch.value = strEch.value.replace(";" + rankOrId[1].toString(),"");
+    //Remet le medicament cliquable dans la liste
+    document.getElementById("rapport_echantillon").options[rankOrId[0]].disabled = false;
+    for(i = 1; i < btn.parentElement.parentElement.childNodes.length; i++){
+        //alert(btn.parentElement.parentElement.childNodes[i].id);
+        if(btn.parentElement.parentElement.childNodes[i].id == numGrp){
+            btn.parentElement.parentElement.removeChild(btn.parentElement.parentElement.childNodes[i])
+        }
+    }
 }
 </script>
-
 {% endblock %}

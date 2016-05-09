@@ -68,7 +68,14 @@
 			</div>
 		{% endif %}
 
-    <div class="container">{% block content %}{% endblock %}</div>
+    <div class="container">
+		{% block content %}
+				<h1>Bienvenue sur le site de GSB r&eacute;serv&eacute; aux visiteurs.</h1><br/>
+				<p>Gr&acirc;ce &agrave; ce site, vous pouvez saisir un nouveau compte-rendu.</br>
+				Vous pouvez &eacute;galement visualiser les comptes-rendus que vous avez d&eacute;j&agrave; r&eacute;alis&eacute; ainsi que la liste de vos coll&egrave;gues,
+				des praticiens connus et des m&eacute;dicaments de notre entreprise.</p>
+		{% endblock %}
+	</div>
 
     {% block javascript %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

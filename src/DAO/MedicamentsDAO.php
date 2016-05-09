@@ -35,6 +35,15 @@ class MedicamentsDAO extends DAO
 
     	return $medicaments;
     }
+    
+    public function findMedicamentByName($nom)
+    {
+        $sql = 'SELECT id from medicament where nom ="'.$nom.'"';
+        $row = $this->db->prepare($sql);
+        $row->execute();
+        $row = $this->db->fetchAssoc($sql, array($nom));
+        return $row;
+    }
 
     private function buildMedicaments(array $row) {
 
