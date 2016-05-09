@@ -13,13 +13,13 @@ class MedicamentType extends AbstractType
         ->add('nom','text', array(
             'disabled' => true
             ))
-         ->add('composition','text', array(
+         ->add('composition','textarea', array(
             'disabled' => true
             ))
-        ->add('effets','text', array(
+        ->add('effets','textarea', array(
             'disabled' => true
             ))
-        ->add('contreindication','text', array(
+        ->add('contreindication','textarea', array(
             'disabled' => true
             ))
         ->add('idFamille','text', array(

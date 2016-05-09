@@ -29,12 +29,48 @@ class PraticienDAO extends DAO
         return $this->buildPraticiens($row);
     }
 
-    public function findType($id) {
-        $sql = 'SELECT nom from type_praticien where id ='.$id;
+    public function findType($id)
+    {
+        $sql = 'SELECT nom from type_praticien where id =' . $id;
         $row = $this->db->prepare($sql);
         $row->execute();
         $row = $this->db->fetchAssoc($sql, array($id));
         return $row;
+    }
+
+    public function findAllTypeAsArray()
+    {
+        $sql = 'SELECT id, nom FROM type_praticien ORDER BY id DESC';
+        $result = $this->db->prepare($sql);
+        $result->execute();
+        $result = $result->fetchAll();
+        $typePraticien = array();
+
+        foreach ($result as $row) {
+            $id 				= $row['id'];
+            $typePraticien[$id]		= $row['nom'];
+        }
+
+        return $typePraticien;
+    }
+
+    public function save(Praticiens $praticiens)
+    {
+        $praticienData = array(
+            'nom' => $praticiens->getNom(),
+            'prenom' => $praticiens->getPrenom(),
+            'adresse' => $praticiens->getAdresse(),
+            'CP' => $praticiens->getCP(),
+            'ville' => $praticiens->getVille(),
+            'coefNotoriete' => $praticiens->getCoefNotoriete(),
+            'coefConfiance' => $praticiens->getCoefConfiance(),
+            'id_Type' => $praticiens->getIdType()
+        );
+        if ($praticiens->getId()) {
+            $this->getDb()->update('praticien', $praticienData, array('id' => $praticiens->getId()));
+        } else {
+            $this->getDb()->insert('praticien', $praticienData);
+        }
     }
 
     public function findAllAsArray()
@@ -51,6 +87,16 @@ class PraticienDAO extends DAO
     	}
 
     	return $praticiens;
+    }
+
+    public function lastId()
+    {
+        $sql = 'SELECT id FROM praticien ORDER BY id DESC limit 1';
+        $row = $this->db->prepare($sql);
+        $row->execute();
+        $row = $this->db->fetchColumn($sql);
+
+        return $row;
     }
 
     private function buildPraticiens(array $row) {
