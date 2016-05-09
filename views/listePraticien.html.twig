@@ -16,7 +16,7 @@
 			</div>
 			<div class="form-group col-md-8">
 				<div class="pull-right">
-					<a type="submit" id="btn" href="{{ app.url_generator.generate('listPraticien') }}/" class="btn btn-primary btn-ls"> Afficher</a>
+					<a type="submit" id="btnAfficher" href="{{ app.url_generator.generate('listPraticien') }}/" class="btn btn-primary btn-ls"> Afficher</a>
 				</div>
 			</div>
 		{{ form_end(praticienForm) }}
@@ -28,11 +28,11 @@
 {% block javascript %}
 
 <script>
-document.getElementById("btn").onclick = function(){
-	var btn    = document.getElementById("btn");
+document.getElementById("btnAfficher").onclick = function(){
+	var btnAfficher    = document.getElementById("btnAfficher");
 	var select = document.getElementById("praticien_idType");
 	var id     = select.options[select.selectedIndex].value;
-	btn.href = btn.href + id;
+	btnAfficher.href = btnAfficher.href + id;
 }
 </script>
 

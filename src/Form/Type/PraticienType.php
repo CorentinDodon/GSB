@@ -4,6 +4,7 @@ namespace GSB\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class PraticienType extends AbstractType
 {
@@ -11,28 +12,30 @@ class PraticienType extends AbstractType
     {
       $builder
         ->add('nom','text', array(
-            'disabled' => true
+            'disabled' => $options['disable']
             ))
         ->add('prenom','text', array(
-            'disabled' => true
+            'disabled' => $options['disable']
             ))
         ->add('adresse','text', array(
-            'disabled' => true
+            'disabled' => $options['disable']
             ))
         ->add('CP','text', array(
-            'disabled' => true
+            'disabled' => $options['disable']
             ))
         ->add('ville','text', array(
-            'disabled' => true
+            'disabled' => $options['disable']
             ))
         ->add('coefNotoriete','text', array(
-            'disabled' => true
+            'disabled' => $options['disable']
             ))
         ->add('coefConfiance','text', array(
-            'disabled' => true
+            'disabled' => $options['disable'],
+            'required' => false
             ))
-        ->add('idType','text', array(
-            'disabled' => true
+        ->add('idType','choice', array(
+            'choices' => $options['typePraticienChoices'],
+            'disabled' => $options['disable']
             ))
       ;
     }
@@ -40,5 +43,13 @@ class PraticienType extends AbstractType
     public function getName()
     {
         return 'praticien';
+    }
+
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setRequired(['typePraticienChoices']);
+        $resolver->setDefaults(['typePraticienChoices' => array()]);
+
+        $resolver->setRequired(['disable']);
     }
 }

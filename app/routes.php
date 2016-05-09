@@ -19,6 +19,9 @@ $app->get('/admin/accueil', "GSB\Controller\LoginController::indexAction")
 $app->match('/admin/praticien', "GSB\Controller\PraticienController::indexAction")
 	->bind('listPraticien');
 $app->match('/admin/praticien/{id}', "GSB\Controller\PraticienController::afficheAction");
+$app->match('/admin/praticien/{id}/edit', "GSB\Controller\PraticienController::editAction");
+$app->match('/admin/add/praticien', "GSB\Controller\PraticienController::ajoutAction")
+	->bind('addPraticien');
 
 $app->get('/admin/medicament', "GSB\Controller\MedicamentController::indexAction")
 	->bind('listMedicament');

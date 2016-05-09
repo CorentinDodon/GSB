@@ -6,11 +6,10 @@
 {% block content %}
 
 <div class="row">
-	<div class="col-md-5">
+	<div class="col-md-6">
 		{{ form_start(medicamentForm, {'attr' : {'class' : 'form-horizontal'} }) }}
-		</div>
 			<div class="form-group">
-				{{ form_label(medicamentForm.nom, 'nom du medicament', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_label(medicamentForm.nom, 'Nom du medicament', {'label_attr':{'class': 'control-label'} }) }}
 				{{ form_errors(medicamentForm.nom) }}
 				{{ form_widget(medicamentForm.nom, { 'attr': { 'class': 'form-control'}}) }}
 			</div>
@@ -26,7 +25,7 @@
 				{{ form_widget(medicamentForm.effets, { 'attr': { 'class': 'form-control'}}) }}
 			</div>
 			<div class="form-group">
-				{{ form_label(medicamentForm.contreindication, 'contreindication(s) du medicament', {'label_attr':{'class': 'control-label'} }) }}
+				{{ form_label(medicamentForm.contreindication, 'Contre-indication(s) du medicament', {'label_attr':{'class': 'control-label'} }) }}
 				{{ form_errors(medicamentForm.contreindication) }}
 				{{ form_widget(medicamentForm.contreindication, { 'attr': { 'class': 'form-control'}}) }}
 			</div>
