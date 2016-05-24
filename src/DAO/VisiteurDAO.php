@@ -12,14 +12,29 @@ class VisiteurDAO extends DAO
 	    $result = $this->db->fetchAll($sql);
 
 	    // Convert query result to an array of domain objects
-	    $praticiens = array();
+	    $visiteur = array();
 	    foreach ($result as $row) {
 	        $visiteurId = $row['id'];
 			$visiteur[$visiteurId] = $this->buildVisiteur($row);
 	    }
 	    return $visiteur;
+	}
+	public function findAllTypeAsArray()
+    {
+        $sql = 'SELECT id, nom FROM secteur';
+        $result = $this->db->prepare($sql);
+        $result->execute();
+        $result = $result->fetchAll();
+        $typeVisiteur = array();
 
+        foreach ($result as $row) {
+            $id = $row['id'];
+            $typeVisiteur[$id]		= $row['nom'];
+        }
+
+        return $typeVisiteur;
     }
+    
 	public function findAllAsArray()
     {
     	$sql = 'SELECT id, nom, prenom FROM employe ORDER BY nom ASC';
@@ -52,7 +67,35 @@ class VisiteurDAO extends DAO
         $row = $this->db->fetchAssoc($sql, array($id));
         return $row;
     }
+	public function save(Visiteur $visiteur)
+    {
+        $visiteurData = array(
+            'nom' => $visiteur->getNom(),
+            'prenom' => $visiteur->getPrenom(),
+            'adresse' => $visiteur->getAdresse(),
+            'CP' => $visiteur->getCP(),
+            'ville' => $visiteur->getVille(),
+            'id_Secteur' => $visiteur->getIdSecteur(),
+			
+			
+        );
+        if ($visiteur->getId()) {
+            $this->getDb()->update('employe', $visiteurData, array('id' => $visiteur->getId()));
+        } else {
+            $this->getDb()->insert('employe', $visiteurData);
+        }
+    }
+	
+	 public function lastId()
+    {
+        $sql = 'SELECT id FROM employe  ORDER BY id DESC limit 1';
+        $row = $this->db->prepare($sql);
+        $row->execute();
+        $row = $this->db->fetchColumn($sql);
 
+        return $row;
+    }
+	
     protected function buildVisiteur(array $row) {
 
         $visiteur = new visiteur();

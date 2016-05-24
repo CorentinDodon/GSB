@@ -1,0 +1,54 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+
+
+{% block content %}
+    <?php dump("toto"); ?>
+    <div class="row">
+        <div class="col-md-5">
+            {{ form_start(visiteurForm, {'attr' : {'class' : 'form-horizontal'} }) }}
+            <div class="form-group">
+                {{ form_label(visiteurForm.nom, 'Nom', {'label_attr':{'class': 'control-label'} }) }}
+                {{ form_errors(visiteurForm.nom) }}
+                {{ form_widget(visiteurForm.nom, { 'attr': { 'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(visiteurForm.prenom, 'Prenom', {'label_attr':{'class': 'control-label'} }) }}
+                {{ form_errors(visiteurForm.prenom) }}
+                {{ form_widget(visiteurForm.prenom, { 'attr': { 'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(visiteurForm.adresse, 'Adresse', {'label_attr':{'class': 'control-label'} }) }}
+                {{ form_errors(visiteurForm.adresse) }}
+                {{ form_widget(visiteurForm.adresse, { 'attr': { 'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(visiteurForm.CP, 'Code Postal', {'label_attr':{'class': 'control-label'} }) }}
+                {{ form_errors(visiteurForm.CP) }}
+                {{ form_widget(visiteurForm.CP, { 'attr': { 'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(visiteurForm.ville, 'Ville', {'label_attr':{'class': 'control-label'} }) }}
+                {{ form_errors(visiteurForm.ville) }}
+                {{ form_widget(visiteurForm.ville, { 'attr': { 'class': 'form-control'}}) }}
+            </div>
+            
+            <div class="form-group">
+                {{ form_label(visiteurForm.idSecteur, 'Secteur', {'label_attr':{'class': 'control-label'} }) }}
+                {{ form_errors(visiteurForm.idSecteur) }}
+                {{ form_widget(visiteurForm.idSecteur, { 'attr': { 'class': 'form-control'}}) }}
+            </div>
+
+            <div class="form-group col-md-8">
+                <div class="pull-right">
+                    <a type="submit" class="btn btn-primary" href="javascript:history.back()"> Retour </a>
+                    <input type="submit" class="btn btn-primary" value="Enregistrer"/>
+                </div>
+            </div>
+            {{ form_end(visiteurForm) }}
+        </div>
+    </div>
+
+{% endblock %}
